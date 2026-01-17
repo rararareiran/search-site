@@ -1,45 +1,30 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>search</title>
-<style>
-body{
-  background:#111;
-  color:#eee;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  font-family:sans-serif;
-}
-input{
-  width:400px;
-  padding:14px;
-  font-size:18px;
-  border-radius:999px;
-  border:none;
-}
-</style>
-</head>
-<body>
-
-<input id="q" placeholder="検索…" />
-
 <script>
 const input = document.getElementById("q");
 
 input.addEventListener("keydown", function(e){
   if(e.key === "Enter"){
     const word = input.value.trim();
-    if(word){
-      location.href =
+
+    if(!word) return;
+
+    // 自作Wiki対応表
+    const pages = {
+      "軍艦島": "gunkanjima.html",
+      "端島": "gunkanjima.html",
+      "池島": "ikeshima.html"
+    };
+
+    if(pages[word]){
+      // 自作Wikiへ
+      window.location.href = pages[word];
+    }else{
+      // Wikipediaへ
+      window.open(
         "https://ja.wikipedia.org/wiki/" +
-        encodeURIComponent(word);
+        encodeURIComponent(word),
+        "_blank"
+      );
     }
   }
 });
 </script>
-
-</body>
-</html>
