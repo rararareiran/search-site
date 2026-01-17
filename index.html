@@ -23,6 +23,23 @@ input{
 </style>
 </head>
 <body>
-<input placeholder="検索…" />
+
+<input id="q" placeholder="検索…" />
+
+<script>
+const input = document.getElementById("q");
+
+input.addEventListener("keydown", function(e){
+  if(e.key === "Enter"){
+    const word = input.value.trim();
+    if(word){
+      location.href =
+        "https://ja.wikipedia.org/wiki/" +
+        encodeURIComponent(word);
+    }
+  }
+});
+</script>
+
 </body>
 </html>
